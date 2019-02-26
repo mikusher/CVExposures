@@ -15,33 +15,29 @@
                 <h2>Data Controller</h2>
                 <div class="span2">
                     <legend>Check Data</legend>
-                    <input id="inputValue" type="text" placeholder="Enter Value...">
-                    <button class="btn btn-primary" type="button" id="btnCheckData">Check Information</button>
+                    <input id="inputValue" type="text" placeholder="Find Vendor...">
+                    <button class="btn btn-primary" type="button" id="btnCheckData">Check All Vendor</button>
                 </div>
                 <div class="span10">
                     <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Column1</th>
-                                    <th>Column2</th>
-                                    <th>Column3</th>
-                                    <th>Column4</th>
-                                    <th>Column5</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Luis</td>
-                                    <td>Amilcar</td>
-                                    <td>Dias</td>
-                                    <td>Neves</td>
-                                    <td>Tavares</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title">Vendor List</h3>
+                            </div>
+                            <div class="box-body no-padding">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>Vendor Name</th>
+                                        <th>Vendor Information</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="list-table-vendor">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -51,9 +47,8 @@
     <script src="js/classes/Utils.js"></script>
     <script src="js/script.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 
 </html>

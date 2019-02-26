@@ -15,14 +15,43 @@
  */
 
 
-//local information
-
 // variables
-var btnCheckData = document.getElementById("btnCheckData");
+var allVendorArray = [];
+let btnCheckData = document.getElementById("btnCheckData");
+var vendorTableList = document.getElementById("list-table-vendor");
+
 
 
 //functions
+function getJSONData(url) {
+    $.ajax({
+        url: url,
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        type: "GET",
+        dataType: "json",
+        data: {},
+        success: (result) => {
+            for (let index = 0; index < result.vendor.length; index++) {
+                let tr = document.createElement('tr');
+                tr.innerHTML = `
+                                <td>${result.vendor[index]}</td>
+                                <td>
+                                  <button type="button" class="btn btn-primary btn-info btn-xs btn-flat">Info</button>
+                                </td>
+                               `;
+                vendorTableList.appendChild(tr);
+            }
+        },
+        error: () => {
+            console.log("error");
+        }
+    });
+}
+
+//operations
 btnCheckData.addEventListener("click", function (params) {
-    
-    Utils.getJSONData('https://cve.circl.lu/api/browse');
+    getJSONData('https://cve.circl.lu/api/browse');
+
 });
