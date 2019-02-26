@@ -16,8 +16,9 @@
 
 
 // variables
-var allVendorArray = [];
 let btnCheckData = document.getElementById("btnCheckData");
+let vendorFilter = document.getElementById("goFilter");
+let vendorInputFilter = document.getElementById("inputValue");
 var vendorTableList = document.getElementById("list-table-vendor");
 
 
@@ -33,14 +34,16 @@ function getJSONData(url) {
         dataType: "json",
         data: {},
         success: (result) => {
-            for (let index = 0; index < result.vendor.length; index++) {
+            const dataIterator = result.vendor;
+            for (const individualIndex of dataIterator) {
                 let tr = document.createElement('tr');
                 tr.innerHTML = `
-                                <td>${result.vendor[index]}</td>
+                                <td>${individualIndex}</td>
                                 <td>
                                   <button type="button" class="btn btn-primary btn-info btn-xs btn-flat">Info</button>
                                 </td>
                                `;
+                addEventsTr(tr);
                 vendorTableList.appendChild(tr);
             }
         },
@@ -51,7 +54,34 @@ function getJSONData(url) {
 }
 
 //operations
+//get all vendor
 btnCheckData.addEventListener("click", function (params) {
     getJSONData('https://cve.circl.lu/api/browse');
 
 });
+
+//action to filter button
+vendorFilter.addEventListener("click", function() {
+    let value = $(vendorInputFilter).val().toLowerCase();
+
+    $("table tr").filter(function(index) {
+        if(index>0){
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        }
+    });
+});
+
+//test event to info Button
+//todo: add modal white basic info / not remove line
+function addEventsTr(tr) {
+
+    tr.querySelector(".btn-info").addEventListener("click", e => {
+        //TODO: change to modal
+        if (confirm("Deseja realmente excluir?")) {
+            tr.remove();
+        }
+
+    });
+
+}
+
