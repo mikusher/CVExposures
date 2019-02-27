@@ -56,7 +56,7 @@ function getJSONData(url) {
 //operations
 //get all vendor
 btnCheckData.addEventListener("click", function (params) {
-    getJSONData('https://cve.circl.lu/api/browse');
+    getJSONData('https://cve.circl.lu/api/browse/');
 
 });
 
