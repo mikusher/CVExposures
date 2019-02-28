@@ -12,32 +12,27 @@
 
 <body>
     <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a href="index.html">Vendor</a></li>
-            <li role="presentation"><a href="vendProducts.html">Vendor Products</a></li>
+            <li role="presentation" class="active"><a href="index.html">All Vendor</a></li>
+            <li role="presentation"><a href="vendProducts.html">Products</a></li>
             <li role="presentation"><a href="vulnerabilities.html">Vulnerabilities</a></li>
     </ul>
     <div class="span12">
         <div class="container-fluid">
             <div class="row-fluid">
-                <h2>Data Controller</h2>
+                <h2>Vendor Container</h2>
                 <div class="span2">
-                    <legend>Check Data</legend>
-                    <input id="inputValue" type="text" placeholder="Find Vendor...">
-                    <button id="goFilter" class="btn btn-secondary">Filter</button>
-                    <button class="btn btn-primary float-right" type="button" id="btnCheckData" style="position: absolute; right: 2%;">Check All Vendor</button>
+                    <button class="btn btn-primary float-right" type="button" id="btnCheckAllVendor" style="position: absolute; right: 2%;">Check All Vendor</button>
                 </div>
                 <div class="span10">
                     <div class="table-responsive">
                         <div class="box">
                             <div class="box-header">
-                                <h3 class="box-title">Vendor List</h3>
                             </div>
                             <div class="box-body no-padding">
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
                                         <th>Vendor Name</th>
-                                        <th>Vendor Product</th>
                                         <th>Vendor Information</th>
                                     </tr>
                                     </thead>

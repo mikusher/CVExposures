@@ -12,11 +12,47 @@
 </head>
 <body>
     <ul class="nav nav-tabs">
-            <li role="presentation"><a href="index.html">Vendor</a></li>
-            <li role="presentation"><a href="vendProducts.html">Vendor Products</a></li>
+            <li role="presentation"><a href="index.html">All Vendor</a></li>
+            <li role="presentation"><a href="vendProducts.html">Products</a></li>
             <li role="presentation" class="active"><a href="vulnerabilities.html">Vulnerabilities</a></li>
     </ul>
 
-
+    <div class="span12">
+        <div class="container-fluid">
+            <div class="row-fluid">
+                    <h2>Vulnerabilities Container</h2>
+                <div class="span2" style="position: inherit;">
+                    <input id="inputVulnerabilitiesFilter" type="text" placeholder="Vulnerabilities by ID...">
+                    <button id="vulnerabilitiesFilter" class="btn btn-secondary">Find ID</button>
+                </div>
+                <div class="span10">
+                    <div class="table-responsive">
+                        <div class="box">
+                            <div class="box-header">
+                                <h3 class="box-title"></h3>
+                            </div>
+                            <div class="box-body no-padding">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Summary</th>
+                                        <th>More Information</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="list-table-vulnerabilities">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/Controller/vulnerabilities.js"></script>
+    <script src="js/Controller/products.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/classes/Utils.js"></script>
 </body>
 </html>
