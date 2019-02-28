@@ -28,7 +28,9 @@ function getJSONData(url) {
     $.ajax({
         url: url,
         headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Access-Control-Allow-Origin': "*",
+            'Access-Control-Allow-Credentials': true
         },
         type: "GET",
         dataType: "json",
@@ -37,13 +39,17 @@ function getJSONData(url) {
             const dataIterator = result.vendor;
             for (const individualIndex of dataIterator) {
                 let tr = document.createElement('tr');
+                let conformeToPopUp = individualIndex.replace(/[^a-zA-Z0-9]/g, '');
                 tr.innerHTML = `
                                 <td>${individualIndex}</td>
                                 <td>
-                                  <button type="button" class="btn btn-primary btn-info btn-xs btn-flat">Info</button>
+                                  <button type="button" id="modal-${conformeToPopUp}" class="btn btn-primary btn-modal btn-xs btn-flat">Products</button>
+                                </td>
+                                <td>
+                                  <a href="#" type="button" id="pop-${conformeToPopUp}" class="btn btn-primary btn-pop btn-xs" data-placement="left" data-toggle="popover">Info</a>
                                 </td>
                                `;
-                addEventsTr(tr);
+                addEventsTr(tr, individualIndex, conformeToPopUp);
                 vendorTableList.appendChild(tr);
             }
         },
@@ -57,7 +63,6 @@ function getJSONData(url) {
 //get all vendor
 btnCheckData.addEventListener("click", function (params) {
     getJSONData('https://cve.circl.lu/api/browse/');
-
 });
 
 //action to filter button
@@ -72,16 +77,29 @@ vendorFilter.addEventListener("click", function() {
 });
 
 //test event to info Button
-//todo: add modal white basic info / not remove line
-function addEventsTr(tr) {
+//todo: check this and try convert to modal
+function addEventsTr(tr, individualIndex, conformeToPopUp) {
+    let url = 'https://cve.circl.lu/api/browse/'+individualIndex;
+    fetch(url).then(function (response) {
+        return response.json();
+    }).then(function (data) {
+        tr.querySelector(".btn-modal").addEventListener("click", e => {
+            $("#modal-"+conformeToPopUp).popover({
+                html : true,
+                title: individualIndex,
+                content: data.product.toString()
+            });
+        });
 
-    tr.querySelector(".btn-info").addEventListener("click", e => {
-        //TODO: change to modal
-        if (confirm("Deseja realmente excluir?")) {
-            tr.remove();
-        }
+        tr.querySelector(".btn-pop").addEventListener("click", e => {
+                $("#pop-"+conformeToPopUp).popover({
+                    title: individualIndex,
+                    content: "Blabla"
+                });
+        });
+
+
 
     });
-
 }
 
