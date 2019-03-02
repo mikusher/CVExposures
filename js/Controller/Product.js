@@ -1,15 +1,40 @@
 
 var productConatinerTable = document.getElementById("list-table-products");
-var btn50Data = document.getElementById("btnGet50Vendor");
+var btnData = document.getElementById("btnGetVendor");
 var dataVendorsIterator = Utils.getContainerStorage("Vendors");
 
 
-btn50Data.addEventListener("click", function (params) {
+function productInTable(json, classes) {
+    var product = json.product;
+    var vendor = json.vendor;
 
-    if(dataVendorsIterator !== null && dataVendorsIterator.length >= 50){
-        for (let i = 0; dataVendorsIterator.length >= 49; i++){
-            Utils.fetchData('https://cve.circl.lu/api/browse/'+dataVendorsIterator[i]).then(function(result) {
-                console.log(result)
+    var headerRow = '';
+    var bodyRows = '';
+
+    classes = classes || '';
+    headerRow += '<th>' + "Vendor: "+json.vendor + '</th>';
+
+    json.product.map(function(row) {
+        bodyRows += '<tr>';
+        bodyRows += '<td>' + row + '</td>';
+        bodyRows += '</tr>';
+    });
+
+    return '<table class="' +
+        classes +
+        '"><thead><tr>' +
+        headerRow +
+        '</tr></thead><tbody>' +
+        bodyRows +
+        '</tbody></table>';
+}
+btnData.addEventListener("click", function (params) {
+
+    if(dataVendorsIterator !== null){
+        for (const vendorName of dataVendorsIterator){
+            $.getJSON('https://cve.circl.lu/api/browse/'+vendorName, function (obj) {
+                const line = productInTable(obj, 'table');
+                productConatinerTable.innerHTML += line;
             });
         }
     }
