@@ -2,6 +2,8 @@ let vulnerabilitiesFilter = document.getElementById("vulnerabilitiesFilter");
 let inputVulnerabilitiesFilter = document.getElementById("inputVulnerabilitiesFilter");
 
 
+
+
 //action to filter button
 vulnerabilitiesFilter.addEventListener("click", function() {
     let value = $(inputVulnerabilitiesFilter).val().toLowerCase();
