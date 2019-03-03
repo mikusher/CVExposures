@@ -53,21 +53,41 @@ $(document).ready(function () {
             let urlResult = 'https://cve.circl.lu/api/search/'+selectComboVendors+'/'+selectComboProduct;
             $.getJSON(urlResult, function (obj) {
                 for (const individualIndex of obj) {
-                    //console.log(individualIndex);
                     let tr = document.createElement('tr');
+                    let idOfElement = "listContainer-"+individualIndex.id;
+                    let idOfElementV = "listContainerV-"+individualIndex.id;
+                    var elementRefList = individualIndex.references;
+                    var elementRefListVulnerabilities = individualIndex.vulnerable_configuration;
                     tr.innerHTML = `
-                                <td id='${individualIndex.id}'>${individualIndex.id}</td>
-                                <td title='${individualIndex.summary}' data-toggle="tooltip" data-placement="top" style="text-overflow: ellipsis; max-width: 810px;">${individualIndex.summary}</td>
-                                
+                                <td><a href='https://cve.circl.lu/api/cve/${individualIndex.id}' target="_blank">${individualIndex.id}</a></td>
+                                <td>${individualIndex.cvss}</td>
+                                <td>${individualIndex.cwe}</td>
+                                <td title='${individualIndex.summary}' data-toggle="tooltip" data-placement="top" style="text-overflow: ellipsis; max-width: 50%;">${individualIndex.summary}</td>
+                                <td><div id='listContainer-${individualIndex.id}'></div></td>
+                                <td><div id='listContainerV-${individualIndex.id}'></div></td>
                                 `;
-
                     vulnearbilitiesConatinerTable.appendChild(tr);
+                    addToLi(document.getElementById(idOfElement), elementRefList);
+                    addToLi(document.getElementById(idOfElementV), elementRefListVulnerabilities);
                 }
             });
         }else {
             positionAlert.style.display = (positionAlert.style.display === "none") ? "block" : "none";
         }
     });
+
+    function addToLi(idOfElement, elementRefList) {
+        let listElement = document.createElement("ul");
+        idOfElement.appendChild(listElement);
+        var numberOfListItems = elementRefList.length;
+
+        for (let i = 0; i < numberOfListItems; ++i) {
+            let listItem = document.createElement("li");
+            listItem.innerHTML = elementRefList[i];
+            listElement.appendChild(listItem);
+        }
+
+    }
 
 
 });
