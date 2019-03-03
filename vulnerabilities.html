@@ -6,9 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Vendor Products</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="./js/lib/jquery.min.js"></script>
-    <script src="./js/lib/bootstrap.min.js"></script>
     <link rel="stylesheet" href="./js/lib/bootstrap.min.css">
+    <script src="./js/lib/jquery.min.js"></script>
+    <script src="./js/lib/popper.min.js"></script>
+    <script src="./js/lib/bootstrap.min.js"></script>
 </head>
 <body>
     <ul class="nav nav-tabs">
@@ -16,7 +17,9 @@
             <li role="presentation"><a href="products.html">Products</a></li>
             <li role="presentation" class="active"><a href="vulnerabilities.html">Vulnerabilities</a></li>
     </ul>
-
+    <div id="alert-target" class="alert alert-warning" style="display: none">
+        <strong>Warning!</strong> Please indicate the vendor and the desired product.
+    </div>
     <div class="span12">
         <div class="container-fluid">
             <div class="row-fluid">
@@ -24,22 +27,29 @@
                 <div class="container">
                     <form>
                         <div class="form-group">
-                            <label for="allVendors">Vendor</label>
-                            <select class="form-control" name="allVendors" id="allVendors">
+                            <label for="allVendorsInPageVul">Vendor</label>
+                            <select class="form-control" name="allVendorsInPageVul" id="allVendorsInPageVul">
                                 <option>Select Vendor</option>
                             </select>
                             <br>
-                            <label for="allVendorProduct">Product</label>
-                            <select class="form-control" name="allVendorProduct" id="allVendorProduct">
+                            <label for="allProductInPageVul">Product</label>
+                            <select class="form-control" name="allProductInPageVul" id="allProductInPageVul">
                                 <option>Select Product</option>
                             </select>
                             <br>
                         </div>
                     </form>
+                    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups" style="float: right;">
+                        <div class="btn-group mr-2" role="group" aria-label="First group">
+                            <button id="btCheckProductContent" class="btn btn-secondary btn-md">Check Product Content</button>
+                        </div>
+                    </div>
                 </div>
-                <div class="span2" style="position: inherit;">
-                    <input id="inputVulnerabilitiesFilter" type="text" placeholder="Vulnerabilities by ID...">
-                    <button id="vulnerabilitiesFilter" class="btn btn-secondary">Find ID</button>
+                <div class="row">
+                    <div class="col-sm-9 left">
+                        <input id="inputSearchInTable" type="text" placeholder="Search in table...">
+                        <button id="btSearchInTable" class="btn btn-secondary btn-md">Search</button>
+                    </div>
                 </div>
                 <div class="span6">
                     <div class="table-responsive">
