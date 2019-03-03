@@ -3,18 +3,7 @@ $(document).ready(function () {
     var btnData = document.getElementById("btnGetVendor");
     var dataVendorsIterator = Utils.getContainerStorage("Vendors");
 
-    loadToContainer("allVendorsSelect");
-
-    function loadToContainer(container){
-        var htmlCode = '';
-        if(dataVendorsIterator !== null){
-            htmlCode += '<option value="">Select Vendor</option>';
-            $.each(dataVendorsIterator, function (key, value) {
-                htmlCode += '<option value="'+value+'">'+value+'</option>';
-            });
-            $('#'+container).html(htmlCode);
-        }
-    };
+    Utils.loadToContainer("allVendorsSelect", 'vd');
 
     function productInTable(json, classes) {
 
