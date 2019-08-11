@@ -20,7 +20,7 @@ var btnCheckData = document.getElementById("btnCheckAllVendor");
 var vendorTableList = document.getElementById("list-table-vendor");
 
 //teste
-var btnCheckAllVendorControler = document.getElementById("btnCheckAllVendorControler");
+//var btnCheckAllVendorControler = document.getElementById("btnCheckAllVendorControler");
 
 
 //operations
@@ -30,7 +30,7 @@ btnCheckData.addEventListener("click", function (params) {
     let dataIterator = Utils.getContainerStorage("Vendors");
 
     if (dataIterator === null) {
-        Utils.fetchDataCORSRequest({url: 'https://cve.circl.lu/api/browse/'}, function jsonCorsResult(result) {
+        Utils.fetchDataDoCORSRequest({url: 'https://cve.circl.lu/api/browse/'}, function jsonCorsResult(result) {
             const dataIterator = result.vendor;
             for (const individualIndex of dataIterator) {
                 let tr = document.createElement('tr');
@@ -48,7 +48,7 @@ btnCheckData.addEventListener("click", function (params) {
     }
 });
 
-
+/*
 btnCheckAllVendorControler.addEventListener("click", function (params) {
     let dataIterator = Utils.getContainerStorage("Vendors");
 
@@ -71,3 +71,4 @@ btnCheckAllVendorControler.addEventListener("click", function (params) {
     }
 
 });
+*/

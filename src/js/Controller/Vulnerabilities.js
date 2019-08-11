@@ -17,7 +17,7 @@ $(document).ready(function () {
     allVendorsInPageVul.addEventListener("change", function () {
         var newVendorID = $(this).val();
         if (newVendorID !== '') {
-            Utils.fetchDataCORSRequest({url: 'https://cve.circl.lu/api/browse/' + newVendorID}, function jsonCorsResult(obj) {
+            Utils.fetchDataDoCORSRequest({url: 'https://cve.circl.lu/api/browse/' + newVendorID}, function jsonCorsResult(obj) {
                 Utils.loadToContainer("allProductInPageVul", 'pd', obj);
             });
         } else {
@@ -51,7 +51,7 @@ $(document).ready(function () {
 
         if (selectComboVendors !== null && selectComboProduct !== null) {
             let urlResult = 'https://cve.circl.lu/api/search/' + selectComboVendors + '/' + selectComboProduct;
-            Utils.fetchDataCORSRequest({url: urlResult}, function jsonCorsResult(obj) {
+            Utils.fetchDataDoCORSRequest({url: urlResult}, function jsonCorsResult(obj) {
                 for (const individualIndex of obj) {
                     let tr = document.createElement('tr');
                     let idOfElement = "listContainer-" + individualIndex.id;

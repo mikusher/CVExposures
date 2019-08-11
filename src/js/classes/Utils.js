@@ -21,7 +21,7 @@ Utils.fetchData = async function (url) {
 };
 
 
-Utils.fetchDataCORSRequest = function doCORSRequest(options, jsonCorsResult) {
+Utils.fetchDataDoCORSRequest = function (options, jsonCorsResult) {
     const cors_api_url = 'https://cors-anywhere.herokuapp.com/';
     var x = new XMLHttpRequest();
     x.open('GET', cors_api_url + options.url);

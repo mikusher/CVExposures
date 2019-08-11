@@ -37,7 +37,7 @@ $(document).ready(function () {
         var selectComboVendors = document.getElementById("allVendorsSelect").value;
 
         if (dataVendorsIterator !== null) {
-            Utils.fetchDataCORSRequest({url: 'https://cve.circl.lu/api/browse/' + selectComboVendors}, function jsonCorsResult(obj) {
+            Utils.fetchDataDoCORSRequest({url: 'https://cve.circl.lu/api/browse/' + selectComboVendors}, function jsonCorsResult(obj) {
                 const line = productInTable(obj, 'table');
                 productConatinerTable.innerHTML = line;
             });
