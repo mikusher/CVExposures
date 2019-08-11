@@ -34,7 +34,7 @@ btnCheckData.addEventListener("click", function (params) {
             const dataIterator = result.vendor;
             for (const individualIndex of dataIterator) {
                 let tr = document.createElement('tr');
-                tr.innerHTML = `<td>${individualIndex}</td>`;
+                tr.innerHTML = `<td><a href='https://cve.circl.lu/browse/${individualIndex}' target="_blank">${individualIndex}</a></td>`;
                 vendorTableList.appendChild(tr);
             }
             Utils.setContainerStorage("Vendors", dataIterator);
@@ -42,7 +42,7 @@ btnCheckData.addEventListener("click", function (params) {
     } else {
         for (const individualIndex of dataIterator) {
             let tr = document.createElement('tr');
-            tr.innerHTML = `<td>${individualIndex}</td>`;
+            tr.innerHTML = `<td><a href='https://cve.circl.lu/browse/${individualIndex}' target="_blank">${individualIndex}</a></td>`;
             vendorTableList.appendChild(tr);
         }
     }
