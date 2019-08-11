@@ -138,17 +138,25 @@ var getXHR = function () {
 var makeRequest = function (uri, data) {
     //make the actual XMLHttpRequest
     var xhr = getXHR();
-    if ('withCredentials' in xhr) console.log("Using XMLHttpRequest2 to make AJAX requests");
+    if ('withCredentials' in xhr) {
+        console.log("Using XMLHttpRequest2 to make AJAX requests");
+    }
     xhr.open("POST", uri, true);
     xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
             if (xhr.status === 200 || xhr.status === 304) {
                 var response = JSON.parse(xhr.responseText);
-                if (response.status === "ok") console.log("You just posted some valid geoJSON");
-                else if (response.status === "error") console.log("There was a problem with your geoJSON " + response.message);
-                else console.log("Response has been recieved using " + response.status);
+                if (response.status === "ok") {
+                    console.log("You just posted some valid geoJSON");
+                } else if (response.status === "error") {
+                    console.log("There was a problem with your geoJSON " + response.message);
+                } else {
+                    console.log("Response has been recieved using " + response.status);
+                }
             }
-        } else console.log("Response recieved with status " + xhr.status);
+        } else {
+            console.log("Response recieved with status " + xhr.status);
+        }
     };
     xhr.setRequestHeader("Content-Type", "application/json");
     xhr.setRequestHeader("X-Requested-With", "XMLHttpRequest");
