@@ -19,7 +19,7 @@ $(document).ready(function () {
 
         json.product.map(function (row) {
             bodyRows += '<tr>';
-            bodyRows += '<td>' + row + '</td>';
+            bodyRows += '<td>' + `<a href='https://cve.circl.lu/api/search/${json.vendor}/${row}' target="_blank"><i class="fa fa-cube" id="icon_${row}"></i></a> ${row}` + '</td>';
             bodyRows += '</tr>';
         });
 
