@@ -17,7 +17,7 @@ $(document).ready(function () {
     allVendorsInPageVul.addEventListener("change", function () {
         var newVendorID = $(this).val();
         if (newVendorID !== '') {
-            $.getJSON('https://cve.circl.lu/api/browse/'+newVendorID, function (obj) {
+            Utils.fetchDataCORSRequest({url: 'https://cve.circl.lu/api/browse/' + newVendorID}, function jsonCorsResult(obj) {
                 Utils.loadToContainer("allProductInPageVul", 'pd', obj);
             });
         } else {
@@ -44,20 +44,20 @@ $(document).ready(function () {
         let selectComboVendors = document.getElementById("allVendorsInPageVul").value;
         let selectComboProduct = document.getElementById("allProductInPageVul").value;
 
-        if (selectComboVendors === 'Select Vendor' || selectComboProduct === 'Select Product'){
+        if (selectComboVendors === 'Select Vendor' || selectComboProduct === 'Select Product') {
             selectComboVendors = null;
             selectComboProduct = null;
         }
 
-        if( selectComboVendors !== null && selectComboProduct !== null ){
-            let urlResult = 'https://cve.circl.lu/api/search/'+selectComboVendors+'/'+selectComboProduct;
-            $.getJSON(urlResult, function (obj) {
+        if (selectComboVendors !== null && selectComboProduct !== null) {
+            let urlResult = 'https://cve.circl.lu/api/search/' + selectComboVendors + '/' + selectComboProduct;
+            Utils.fetchDataCORSRequest({url: urlResult}, function jsonCorsResult(obj) {
                 for (const individualIndex of obj) {
                     let tr = document.createElement('tr');
-                    let idOfElement = "listContainer-"+individualIndex.id;
-                    let idOfElementV = "listContainerV-"+individualIndex.id;
-                    var elementRefList = individualIndex.references;
-                    var elementRefListVulnerabilities = individualIndex.vulnerable_configuration;
+                    let idOfElement = "listContainer-" + individualIndex.id;
+                    let idOfElementV = "listContainerV-" + individualIndex.id;
+                    var elementRefList = individualIndex.references;
+                    var elementRefListVulnerabilities = individualIndex.vulnerable_configuration;
                     tr.innerHTML = `
                                 <td><a href='https://cve.circl.lu/api/cve/${individualIndex.id}' target="_blank">${individualIndex.id}</a></td>
                                 <td>${individualIndex.cvss}</td>
@@ -71,23 +71,20 @@ $(document).ready(function () {
                     addToLi(document.getElementById(idOfElementV), elementRefListVulnerabilities);
                 }
             });
-        }else {
+        } else {
             positionAlert.style.display = (positionAlert.style.display === "none") ? "block" : "none";
         }
     });
 
     function addToLi(idOfElement, elementRefList) {
-        let listElement = document.createElement("ul");
+        let listElement = document.createElement("ul");
         idOfElement.appendChild(listElement);
-        var numberOfListItems = elementRefList.length;
+        var numberOfListItems = elementRefList.length;
 
-        for (let i = 0; i < numberOfListItems; ++i) {
-            let listItem = document.createElement("li");
-            listItem.innerHTML = elementRefList[i];
+        for (let i = 0; i < numberOfListItems; ++i) {
+            let listItem = document.createElement("li");
+            listItem.innerHTML = elementRefList[i];
             listElement.appendChild(listItem);
         }
-
     }
-
-
 });

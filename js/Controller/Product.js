@@ -12,12 +12,12 @@ $(document).ready(function () {
 
         classes = classes || '';
         headerRow += '<th>'
-            + "Vendor: "+json.vendor
+            + "Vendor: " + json.vendor
             + "  -  "
-            + "Number of Products: "+json.product.length
+            + "Number of Products: " + json.product.length
             + '</th>';
 
-        json.product.map(function(row) {
+        json.product.map(function (row) {
             bodyRows += '<tr>';
             bodyRows += '<td>' + row + '</td>';
             bodyRows += '</tr>';
@@ -36,8 +36,8 @@ $(document).ready(function () {
 
         var selectComboVendors = document.getElementById("allVendorsSelect").value;
 
-        if(dataVendorsIterator !== null){
-            $.getJSON('https://cve.circl.lu/api/browse/'+selectComboVendors, function (obj) {
+        if (dataVendorsIterator !== null) {
+            Utils.fetchDataCORSRequest({url: 'https://cve.circl.lu/api/browse/' + selectComboVendors}, function jsonCorsResult(obj) {
                 const line = productInTable(obj, 'table');
                 productConatinerTable.innerHTML = line;
             });
