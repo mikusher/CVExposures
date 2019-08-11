@@ -1,10 +1,12 @@
 // use the brainjs lib
 //https://cdnjs.cloudflare.com/ajax/libs/brain/0.6.3/brain.js
+// dica: https://cdn.sisense.com/wp-content/uploads/Machine-Learning-with-Javascript.pdf
 
 function BrainLight() {
 }
 
-const network = new brain.NeuralNetwork();
+let hiddenLayers = {hiddenLayers: [2,2]};
+const network = new brain.NeuralNetwork(hiddenLayers);
 
 network.train([{
     input: [1, 2],
