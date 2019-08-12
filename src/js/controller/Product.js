@@ -18,8 +18,12 @@ $(document).ready(function () {
             + '</th>';
 
         json.product.map(function (row) {
+            const rowClean = row.replace(/[^A-Z0-9]+/ig, "_");
             bodyRows += '<tr>';
-            bodyRows += '<td>' + `<a href='https://cve.circl.lu/api/search/${json.vendor}/${row}' target="_blank"><i class="fa fa-cube" id="icon_${row}"></i></a> ${row}` + '</td>';
+            bodyRows +=
+                '<td>'
+                + `<i class="fa fa-cube" id="icon_${rowClean}" data-toggle="modal" data-target="modal_${rowClean}"></i></a> ${row}` +
+                '</td>';
             bodyRows += '</tr>';
         });
 
@@ -32,6 +36,14 @@ $(document).ready(function () {
             '</tbody></table>';
     };
 
+    function popUpConstract(row, rowClean, vendor) {
+        document.getElementById(rowClean).addEventListener('click', function (evt) {
+            evt.stopImmediatePropagation();
+
+            console.log("Row: " + `<a href='https://cve.circl.lu/api/search/${vendor}/${row}`)
+        })
+    };
+
     btnData.addEventListener("click", function (params) {
 
         var selectComboVendors = document.getElementById("allVendorsSelect").value;
@@ -40,6 +52,11 @@ $(document).ready(function () {
             Utils.fetchDataDoCORSRequest({url: 'https://cve.circl.lu/api/browse/' + selectComboVendors}, function jsonCorsResult(obj) {
                 const line = productInTable(obj, 'table');
                 productConatinerTable.innerHTML = line;
+
+                obj.product.map(function (row) {
+                    const rowClean = row.replace(/[^A-Z0-9]+/ig, "_");
+                    popUpConstract(row, ("icon_" + `${rowClean}`), obj.vendor);
+                });
             });
         }
     });
