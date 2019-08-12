@@ -7,8 +7,15 @@
 function BrainLight() {
 }
 
-let hiddenLayers = {hiddenLayers: [2,2]};
-const network = new brain.NeuralNetwork(hiddenLayers);
+//let hiddenLayers = {hiddenLayers: [2,2]};
+let composition = {
+    activation: 'sigmoid', // activation function
+    hiddenLayers: [2,2],
+    iterations: 20000,
+    learningRate: 0.5 // global learning rate, useful when training using streams
+};
+
+const network = new brain.NeuralNetwork(composition);
 
 network.train([{
     input: [1, 2],
