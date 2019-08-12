@@ -1,6 +1,7 @@
 // use the brainjs lib
 //https://cdnjs.cloudflare.com/ajax/libs/brain/0.6.3/brain.js
 //<script src="https://unpkg.com/brain.js@1.0.0-rc.3/browser.js"></script>
+//https://scrimba.com/playlist/pX7ZHD
 // dica: https://cdn.sisense.com/wp-content/uploads/Machine-Learning-with-Javascript.pdf
 
 function BrainLight() {
